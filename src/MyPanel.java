@@ -72,4 +72,17 @@ public class MyPanel extends JPanel{
             g.drawLine(rect.x, rect.y, rect.width, rect.height);
         }
     }
+
+    public void setX(int x){
+        this.x = x;
+    }
+    public void setY(int y){
+        this.y = y;
+    }    public void setWidth(int width){
+        this.width = width;
+    }    public void setHeight(int height){
+        this.height = height;
+    }    public void setStep(int step){
+        this.step = step;
+    }
 }
