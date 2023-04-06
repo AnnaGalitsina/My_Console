@@ -4,57 +4,100 @@ import java.util.ArrayList;
 public class MyPanel extends JPanel{
     public MyPanel() {
         setBorder(BorderFactory.createLineBorder(Color.black));
+        setPreferredSize(new Dimension(1560,700));
     }
-
-    public  Dimension getPreferredSize() {
-        return new Dimension( 1560,  700);
+    public Dimension getPrefferedSize() {
+        return new Dimension(1560,700);
     }
     private int x = 100;
     private int y = 100;
     private int width = 50;
-    private  int height = 100;
+    private int height = 100;
     private int step = 30;
-    private  int delta = 5;
-    //private String[] numbers = null;
-    // private int otstup = 1;
+    private int delta = 3;
 
     private ArrayList<Rectangle> outlist = new ArrayList<Rectangle>();
 
     public void setSymbols(String parm){
         String[] arr = parm.replace(",", "").split(" ");
+        outlist.clear();
         for (String cifra: arr){
             switch (cifra){
                 case "А":
-                   break;
-                case "2":
                     segment(1);
                     segment(2);
                     segment(3);
+                    segment(4);
                     segment(6);
-                    segment(5);
+                    segment(7);
                     break;
-                case "3":
+                case "Б":
+                    segment(1);
+                    segment(3);
+                    segment(4);
+                    segment(5);
+                    segment(6);
+                    segment(7);
+                    break;
+                case "В":
                     segment(1);
                     segment(2);
                     segment(3);
                     segment(4);
                     segment(5);
+                    segment(6);
+                    segment(7);
+                    break;
+                case "Г":
+                    segment(1);
+                    segment(6);
+                    segment(7);
+                    break;
+                case "а":
+                    segment(1);
+                    segment(2);
+                    segment(3);
+                    segment(4);
+                    segment(5);
+                    segment(6);
+                    break;
+                case "мю":
+                    segment(2);
+                    segment(3);
+                    segment(6);
+                    segment(7);
+                    break;
+                case "ю":
+                    segment(3);
+                    segment(8);
+                    segment(9);
+                    break;
+                case "я":
+                    segment(6);
+                    segment(7);
+                    segment(10);
+                    segment(11);
+                    break;
+                case "йэ":
+                    segment(2);
+                    segment(4);
+                    segment(6);
+                    segment(7);
+                    segment(10);
+                    segment(11);
+                    break;
+                case "нь":
+                    segment(3);
+                    segment(4);
+                    segment(5);
+                    segment(6);
+                    segment(12);
                     break;
             }
             x = x + step + width;
         }
     }
 
-    public class APanel extends JPanel {
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            int width = getWidth();
-            int height = getHeight();
-            g.drawLine(0, height, width / 2, 0);
-            g.drawLine(width / 2, 0, width, height);
-            g.drawLine(width / 4, height / 2, 3 * width / 4, height / 2);
-        }
-    }
     public void segment(int number){
         switch (number) {
             // 1-7 сегменты с лабораторной работы
@@ -101,24 +144,30 @@ public class MyPanel extends JPanel{
                 break;
         }
     }
-        public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        for (Rectangle rect: outlist){
+        for(Rectangle rect: outlist) {
             g.drawLine(rect.x, rect.y, rect.width, rect.height);
         }
     }
 
-    public void setX(int x){
+    public void setX(int x) {
         this.x = x;
     }
-    public void setY(int y){
+
+    public void setY(int y) {
         this.y = y;
-    }    public void setWidth(int width){
+    }
+
+    public void setWidth(int width) {
         this.width = width;
-    }    public void setHeight(int height){
+    }
+
+    public void setHeight(int height) {
         this.height = height;
-    }    public void setStep(int step){
+    }
+
+    public void setStep(int step) {
         this.step = step;
     }
 }
