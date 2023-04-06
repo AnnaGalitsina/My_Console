@@ -3,29 +3,24 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.lang.Integer.getInteger;
-
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
-
+        System.out.println("Hello world");
         int[] koords = new int[5];
         JTextField smallField = new JTextField("300, 250, 25, 45, 20");
-        JTextField numbers = new JTextField("А, а, Б, б, В, в, Г, г, Д, д");
+        JTextField letters = new JTextField("А, Б, В, Г, а, мю, ю, я, йэ, нь");
         JFrame f = new JFrame("Swing Paint Demo");
         MyPanel myPanel = new MyPanel();
-        numbers.addActionListener(new ActionListener() {
-
+        letters.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                String[] parm = smallField.getText().replaceAll(" ",
-                        "").split(",");
-                if (parm.length != parm.length){
-                    //Отображение введенного текста
+                String[] parm = smallField.getText().replaceAll(" ", "").split(",");
+                int[] koords = new int[parm.length];
+                if (parm.length != parm.length) {
                     JOptionPane.showMessageDialog(null,
                             "Ошибка в количестве параметров");
                 }
-                for (int i=0; i < parm.length; i++){
+                for (int i = 0; i < parm.length; i++) {
                     koords[i] = getInteger(parm[i]);
                 }
                 myPanel.setX(koords[0]);
@@ -33,7 +28,7 @@ public class Main {
                 myPanel.setWidth(koords[2]);
                 myPanel.setHeight(koords[3]);
                 myPanel.setStep(koords[4]);
-                myPanel.setSymbols(numbers.getText());
+                myPanel.setSymbols(letters.getText());
                 myPanel.repaint();
                 f.add(myPanel);
                 f.pack();
@@ -41,15 +36,13 @@ public class Main {
             }
         });
 
-
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel contents = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
-        //Создание панели с текстовыми полями
-        contents.add(numbers);
+        contents.add(letters);
         contents.add(smallField);
+        contents.setPreferredSize(new Dimension(1560,700));
         f.setContentPane(contents);
-
 
         myPanel.repaint();
         f.add(myPanel);
@@ -57,12 +50,12 @@ public class Main {
         f.setVisible(true);
     }
 
-    private static int getInteger(String parm){
+    private static int getInteger(String parm) {
         try {
             return Integer.parseInt(parm);
         }
-        catch (Exception e){
-            new Exception("Это не цифра");
+        catch (Exception e) {
+            new Exception("Это не буква");
         }
         return 0;
     }
