@@ -24,10 +24,8 @@ public class MyPanel extends JPanel{
         String[] arr = parm.replace(",", "").split(" ");
         for (String cifra: arr){
             switch (cifra){
-                case "1":
-                    segment(2);
-                    segment(4);
-                    break;
+                case "А":
+                   break;
                 case "2":
                     segment(1);
                     segment(2);
@@ -47,21 +45,59 @@ public class MyPanel extends JPanel{
         }
     }
 
+    public class APanel extends JPanel {
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            int width = getWidth();
+            int height = getHeight();
+            g.drawLine(0, height, width / 2, 0);
+            g.drawLine(width / 2, 0, width, height);
+            g.drawLine(width / 4, height / 2, 3 * width / 4, height / 2);
+        }
+    }
     public void segment(int number){
         switch (number) {
+            // 1-7 сегменты с лабораторной работы
+            // горизонтальные сегменты, 1 - верхний, 3 - средний, 5 - нижний
             case 1: outlist.add(new Rectangle(x + delta, y, x+ width - delta, y));
-                break;
-            case 2: outlist.add(new Rectangle(x + width, y + delta, x + width, y + (height / 2) - delta));
                 break;
             case 3: outlist.add(new Rectangle(x + delta, y + height / 2, x + width - delta, y + height / 2));
                 break;
-            case 4: outlist.add(new Rectangle(x + width, y + (height / 2) + delta, x + width, y + height - delta));
-                break;
             case 5: outlist.add(new Rectangle(x + delta, y + height, x + width - delta, y + height));
                 break;
+
+            // правые вертикальные сегменты, 2 - верхний, 4 - нижний
+            case 2: outlist.add(new Rectangle(x + width, y + delta, x + width, y + (height / 2) - delta));
+                break;
+            case 4: outlist.add(new Rectangle(x + width, y + (height / 2) + delta, x + width, y + height - delta));
+                break;
+
+            // левые сегменты, 7 - верхний, 6 - нижний
             case 6: outlist.add(new Rectangle(x, y + (height / 2) + delta, x, y + height - delta));
                 break;
             case 7: outlist.add(new Rectangle(x, y + delta, x, y + (height / 2) - delta));
+                break;
+
+            // 8-12 сегменты собственные
+            // для корейской буквы ю
+            case 8:
+                outlist.add(new Rectangle(x + (width/3), y+height/2+delta, x + (width/3), y+height-delta));
+                break;
+            case 9:
+                outlist.add(new Rectangle(x + (width*2/3), y+height/2+delta, x + (width*2/3), y+height-delta));
+                break;
+
+            // для корейских букв я, йэ
+            case 10:
+                outlist.add(new Rectangle(x+delta, y+height/3, x + width-delta, y+height/3));
+                break;
+            case 11:
+                outlist.add(new Rectangle(x+delta, y+height*2/3, x + width-delta, y+height*2/3));
+                break;
+
+            // для корейской буквы нь
+            case 12:
+                outlist.add(new Rectangle(x + (width/2) - 5, y+delta, x + (width/2), y+(height/2)-delta));
                 break;
         }
     }

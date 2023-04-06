@@ -12,7 +12,7 @@ public class Main {
 
         int[] koords = new int[5];
         JTextField smallField = new JTextField("300, 250, 25, 45, 20");
-        JTextField numbers = new JTextField("0, 1, 2, 3, 4, 5, 6, 7, 8, 9");
+        JTextField numbers = new JTextField("А, а, Б, б, В, в, Г, г, Д, д");
         JFrame f = new JFrame("Swing Paint Demo");
         MyPanel myPanel = new MyPanel();
         numbers.addActionListener(new ActionListener() {
